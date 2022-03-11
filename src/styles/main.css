@@ -35,7 +35,7 @@ html{
     background-image:url('../images/entrenamiento.jpg');
     background-repeat: no-repeat;
     background-size:cover;
-    height: calc(100vh - 56px);
+    height: calc(100vh);
     max-width:auto;
     opacity: 0.8;
     display:flex; 
@@ -62,8 +62,8 @@ html{
 }
 
 .login__formulario{
-    display:flex;
-    justify-content: flex-end!important;
+    /* display:flex;
+    justify-content: flex-end!important; */
 }
 
 .bloque{
@@ -94,36 +94,40 @@ h6{
   }
 
 .color003d85{
-    background-color:#003d85
+    background-color:#003d85;
 }
 .color00ff00{
-    background-color:#00ff00
+    background-color:#00ff00;
 }
 
 .color028500{
-    background-color:#028500
+    background-color:#028500;
 }
 
 .color243F81{
-    background-color:#243F81
+    background-color:#243F81;
 }
 
 .color7B0000{
-    background-color:#7B0000
+    background-color:#7B0000;
 }
   
 .colorbe1622{
-    background-color:#be1622
+    background-color:#be1622;
 }
   
 .colorf39200{
-    background-color:#f39200
+    background-color:#f39200;
 }
 
 .colorff0000{
-    background-color:#ff0000
+    background-color:#ff0000;
 }
 
 .colorffff00{
-    background-color:#ffff00
+    background-color:#ffff00;
+}
+
+.colorff961b{
+    background-color: #FF961B!important;
 }

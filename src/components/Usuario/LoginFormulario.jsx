@@ -13,6 +13,10 @@ const schema = yup.object({
 const LoginFormulario = ({ usuario, ingresarSesion }) => {
   return (
     <Formik
+      initialValues={{
+        usuario: usuario.usuario,
+        contrasena: usuario.contrasena,
+      }}
       validationSchema={schema}
       onSubmit={(values, e) => {
         usuario.usuario = values.usuario;
@@ -30,10 +34,6 @@ const LoginFormulario = ({ usuario, ingresarSesion }) => {
               button: 'OK',
             });
           });
-      }}
-      initialValues={{
-        usuario: usuario.usuario,
-        contrasena: usuario.contrasena,
       }}
     >
       {({
@@ -53,7 +53,22 @@ const LoginFormulario = ({ usuario, ingresarSesion }) => {
           <h2 className="tituloCentrado">INICIO DE SESIÓN</h2>
           <Row className="mb-3">
             <Form.Group as={Col}>
-              <Form.Label>Usuario</Form.Label>
+              <Form.Control
+                placeholder="Empresa"
+                name="empresa"
+                id="empresa"
+                value={values.empresa}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={!!touched.empresa && !!errors.empresa}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.empresa}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Row>
+          <Row className="mb-3">
+            <Form.Group as={Col}>
               <Form.Control
                 placeholder="Usuario"
                 name="usuario"
@@ -70,7 +85,6 @@ const LoginFormulario = ({ usuario, ingresarSesion }) => {
           </Row>
           <Row className="mb-3">
             <Form.Group as={Col}>
-              <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Contraseña"
@@ -86,11 +100,11 @@ const LoginFormulario = ({ usuario, ingresarSesion }) => {
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
-          <Form.Row align="end">
-            <Button className="ph-6" variant="primary" type="submit">
+          <Row align="end">
+            <Button className="ph-3 colorff961b" variant="primary" type="submit">
               Ingresar
             </Button>
-          </Form.Row>
+          </Row>
         </Form>
       )}
     </Formik>

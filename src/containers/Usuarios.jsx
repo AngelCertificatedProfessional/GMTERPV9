@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
 import initialState from '../utils/initialState';
 import { listado, consultaById } from '../utils/ConexionAPI';
 import { crearArregloColumnas } from '../utils/Tabla';
-import AppContext from './../context/AppContext';
 import moment from 'moment';
 import {b64_to_utf8} from './../utils/UtileriasPagina';
-import { useHistory, useLocation, withRouter } from 'react-router-dom';
+import { useHistory, useLocation, useNavigate } from 'react-router-dom';
 const InfoUsuario = React.lazy(() =>
   import('./../components/Usuario/InfoUsuario')
 );
@@ -18,13 +17,12 @@ const CambiarContrasenas = React.lazy(() =>
 );
 const SideBar = React.lazy(() => import('./../components/Generales/SideBar'));
 
-const Usuario = () => {
+const Usuarios = () => {
   const [accion, setAccion] = useState(0);
   const [usuario, setUsuario] = useState({ ...initialState.usuario });
   const [usuarioListado, setUsuarioListado] = useState([]);
   const [seleccionado, setSeleccionado] = useState(0);
   const [columnas, setColumnas] = useState([]);
-  const { state, agregarUsuario } = useContext(AppContext);
 
   const cambiarVentana = (ventana) => {
     if (ventana === 2) {
@@ -33,32 +31,32 @@ const Usuario = () => {
     setAccion(ventana);
   };
 
-  let history = useHistory();
+  let navigate  = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    setUsuario({ ...initialState.usuario });
-    let usuarioSesionT = state.usuario;
-    if (
-      usuarioSesionT === null ||
-      usuarioSesionT === undefined ||
-      usuarioSesionT.usuario === ''
-    ) {
-      usuarioSesionT = JSON.parse(b64_to_utf8(sessionStorage.getItem('usuario')));
-      if (
-        (usuarioSesionT === null ||
-          usuarioSesionT === undefined ||
-          usuarioSesionT.usuario === '') &&
-        location.pathname !== '/login'
-      ) {
-        history.push('/login');
-      }
-      agregarUsuario(usuarioSesionT);
-      actualizarListado(usuarioSesionT);
-    }else{
-      actualizarListado();
-    }
-  }, []);
+  // useEffect(() => {
+  //   setUsuario({ ...initialState.usuario });
+  //   let usuarioSesionT = state.usuario;
+  //   if (
+  //     usuarioSesionT === null ||
+  //     usuarioSesionT === undefined ||
+  //     usuarioSesionT.usuario === ''
+  //   ) {
+  //     usuarioSesionT = JSON.parse(b64_to_utf8(sessionStorage.getItem('usuario')));
+  //     if (
+  //       (usuarioSesionT === null ||
+  //         usuarioSesionT === undefined ||
+  //         usuarioSesionT.usuario === '') &&
+  //       location.pathname !== '/login'
+  //     ) {
+  //       history.push('/login');
+  //     }
+  //     agregarUsuario(usuarioSesionT);
+  //     actualizarListado(usuarioSesionT);
+  //   }else{
+  //     actualizarListado();
+  //   }
+  // }, []);
 
   const actualizarListado = async (usuarioSesionT) => {
     const jsListado = await listado('usuario/listado');
@@ -128,4 +126,4 @@ const Usuario = () => {
   );
 };
 
-export default withRouter(Usuario);
+export default Usuarios;
