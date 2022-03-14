@@ -14,8 +14,8 @@ const LoginFormulario = ({ usuario, ingresarSesion }) => {
   return (
     <Formik
       initialValues={{
-        usuario: usuario.usuario,
-        contrasena: usuario.contrasena,
+        usuario: usuario.usuario || '',
+        contrasena: usuario.contrasena || '',
       }}
       validationSchema={schema}
       onSubmit={(values, e) => {

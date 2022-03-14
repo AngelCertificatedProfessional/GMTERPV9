@@ -48,7 +48,6 @@ html{
     padding:2rem;
     border-radius: 0.3rem;
     min-height:20rem;
-    width:30rem;
 }
 
 
@@ -130,4 +129,8 @@ h6{
 
 .colorff961b{
     background-color: #FF961B!important;
+}
+
+.colorf2f2f2{
+    background-color: #f2f2f2!important;
 }
