@@ -134,3 +134,8 @@ h6{
 .colorf2f2f2{
     background-color: #f2f2f2!important;
 }
+
+.imagenAlerta{
+    width:50px !important;
+    height:50px !important;
+}
